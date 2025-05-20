@@ -1,4 +1,5 @@
 using dsd603Vm2025JBC.Data;
+using dsd603Vm2025JBC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +14,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+//tells program service exists
+builder.Services.AddSingleton<ITextFileOperations, TextFileOperations>();
+builder.Services.AddTransient<IDataSeeder, DataSeeder>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

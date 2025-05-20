@@ -48,8 +48,16 @@ namespace dsd603Vm2025JBC.Controllers
         // GET: Visitors/Create
         public IActionResult Create()
         {
-            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Id");
-            return View();
+            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Name");
+
+            // create a new instance of the Visitors model
+            var visitor = new Visitors()
+            {
+                DateIn = DateTime.Now,
+                //DateOut = DateTime.Now.AddHours(1)
+            };
+
+            return View(visitor);
         }
 
         // POST: Visitors/Create
@@ -66,7 +74,7 @@ namespace dsd603Vm2025JBC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Id", visitors.StaffNameId);
+            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Name", visitors.StaffNameId);
             return View(visitors);
         }
 
@@ -83,7 +91,7 @@ namespace dsd603Vm2025JBC.Controllers
             {
                 return NotFound();
             }
-            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Id", visitors.StaffNameId);
+            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Name", visitors.StaffNameId);
             return View(visitors);
         }
 
@@ -119,7 +127,7 @@ namespace dsd603Vm2025JBC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Id", visitors.StaffNameId);
+            ViewData["StaffNameId"] = new SelectList(_context.StaffNames, "Id", "Name", visitors.StaffNameId);
             return View(visitors);
         }
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dsd603Vm2025JBC.Data;
 
@@ -11,9 +12,11 @@ using dsd603Vm2025JBC.Data;
 namespace dsd603Vm2025JBC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250513231549_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,13 +253,10 @@ namespace dsd603Vm2025JBC.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Business")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DateIn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateOut")
+                    b.Property<DateTime>("DateOut")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
